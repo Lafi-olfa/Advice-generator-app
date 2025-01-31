@@ -1,11 +1,7 @@
-
-fetch('')
-    .then((response) =>response.json())
-    .then((data) => {
-        const advices = data.slip
-        console.log(advices);
-
-    })
-    .catch((error) => {
-        console.error('Erreur lors du chargement du fichier JSON:', error);
-    });
+const fetchAdvice= async ()=>{
+    const res= await fetch('https://api.adviceslip.com/advice');
+    const data = await res.json();
+    document.querySelector('h2').innerHTML =  `ADVICE #${data.slip.id}`
+    document.querySelector('p').innerHTML = `"${data.slip.advice}"`    
+}
+fetchAdvice()
